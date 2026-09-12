@@ -1,23 +1,86 @@
-/* Correções finais de enquadramento e mídia */
+/* Camada de correções finais — carregada por último */
+html{scroll-behavior:smooth}
+body{min-width:320px}
+img{max-width:100%;display:block}
+
+/* Toda mídia editorial deve preencher o quadro, evitando cortes pelo tamanho intrínseco. */
+.media-img,
 .project-image img,
 .project-page-hero img,
 .detail-photo img,
 .detail-full img,
 .studio-image img,
-.living-photo img {
+.living-photo img{
   display:block;
   width:100%;
   height:100%;
   object-fit:cover;
 }
-.project-0 .project-image img { object-position:50% 68%; }
-.project-1 .project-image img { object-position:50% 55%; }
-.project-2 .project-image img { object-position:50% 55%; }
-.project-3 .project-image img { object-position:50% 55%; }
-.project-4 .project-image img { object-position:50% 55%; }
-.project-page-hero img { object-position:50% 62%; }
-.detail-photo img,.detail-full img { object-position:50% 52%; }
-@media (max-width:700px){
-  .project-0 .project-image img { object-position:50% 70%; }
-  .project-page-hero img { object-position:50% 68%; }
+.project-image img,
+.studio-image img,
+.living-photo img,
+.project-page-hero img,
+.detail-photo img,
+.detail-full img{position:absolute;inset:0}
+.project-image,.studio-image,.living-photo,.project-page-hero,.detail-photo,.detail-full{position:relative;overflow:hidden}
+
+/* Enquadramentos por projeto. */
+.project-0 .project-image img{object-position:50% 67%}
+.project-1 .project-image img{object-position:50% 56%}
+.project-2 .project-image img{object-position:50% 58%}
+.project-3 .project-image img{object-position:50% 55%}
+.project-4 .project-image img{object-position:50% 55%}
+.project-page-hero img{object-position:50% 62%}
+.detail-photo img,.detail-full img{object-position:50% 54%}
+.studio-image img,.living-photo img{object-position:50% 52%}
+
+/* Hero: mantém a casa visível em telas estreitas. */
+.hero-original{width:100%!important;height:100%!important;object-fit:cover!important;object-position:50% 60%!important}
+
+/* Accordion funciona tanto pelo JS quanto pelo estado nativo do <details>. */
+details.service-row[open] .service-description{display:block}
+details.service-row[open] .service-index{color:var(--copper)}
+details.service-row summary{list-style:none}
+details.service-row summary::-webkit-details-marker{display:none}
+
+/* Campo select consistente com o restante do formulário, inclusive no iOS. */
+.contact-form select{
+  width:100%;
+  min-height:51px;
+  padding:10px 28px 14px 0;
+  color:var(--paper);
+  background:transparent;
+  border:0;
+  border-bottom:1px solid #74786c;
+  border-radius:0;
+  appearance:none;
+  -webkit-appearance:none;
+  font:inherit;
+}
+.contact-form select option{color:#202522;background:#f3f2ed}
+
+/* Proteções de layout. */
+.project-caption,.project-caption>div,.studio-copy,.living-copy,.contact-intro,.contact-form{min-width:0}
+.project-caption h3,.project-summary,.service-title,.footer-bottom{overflow-wrap:anywhere}
+.mobile-menu{overscroll-behavior:contain}
+
+@media(max-width:700px){
+  .hero-original{object-position:50% 64%!important}
+  .project-0 .project-image img{object-position:50% 66%}
+  .project-1 .project-image img{object-position:50% 55%}
+  .project-2 .project-image img{object-position:50% 57%}
+  .project-3 .project-image img{object-position:50% 54%}
+  .project-4 .project-image img{object-position:50% 54%}
+  .project-page-hero img{object-position:50% 64%}
+  .detail-photo img,.detail-full img{object-position:50% 53%}
+  .project-image{min-height:0}
+  .project-caption{gap:10px}
+  .project-summary{max-width:none}
+  .contact-form select{font-size:16px}
+}
+
+@media(max-width:380px){
+  .brand{font-size:34px}
+  .project-caption h3{font-size:26px}
+  .contact-intro h2{font-size:42px}
 }
