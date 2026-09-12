@@ -1,0 +1,3 @@
+User-agent: *
+Allow: /
+Sitemap: https://forma-arquitetura-yagho733s-projects.vercel.app/sitemap.xml
