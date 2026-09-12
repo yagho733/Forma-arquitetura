@@ -1,1 +1,1 @@
-{"cleanUrls":true,"trailingSlash":true,"rewrites":[{"source":"/projetos/:slug/","destination":"/project.html"}]}
+{"cleanUrls":false,"trailingSlash":true}
