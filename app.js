@@ -12,6 +12,12 @@
     icon.type='image/svg+xml';
     document.head.appendChild(icon);
   }
+  if(!document.getElementById('requested-fixes')){
+    const style=document.createElement('style');
+    style.id='requested-fixes';
+    style.textContent='.back-project{left:auto!important;right:22px!important}.submit,.submit:hover,.submit:focus-visible{color:#1f2421!important}@media(max-width:760px){.back-project{left:auto!important;right:14px!important}}';
+    document.head.appendChild(style);
+  }
 })();
 
 window.formaScrollLock=(()=>{
@@ -93,6 +99,11 @@ const horizonteImg=cards[0]?.querySelector('img');
 if(horizonteImg){
   horizonteImg.src='https://images.unsplash.com/photo-1749433157422-2e2162b2e030?auto=format&fit=crop&fm=jpg&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&ixlib=rb-4.1.0&q=60&w=3000';
   protectImage(horizonteImg);
+}
+const brumaImg=cards[1]?.querySelector('img');
+if(brumaImg){
+  brumaImg.src='https://images.unsplash.com/photo-1775116483675-a592e6e02807?auto=format&fit=crop&fm=jpg&ixlib=rb-4.1.0&q=78&w=2200';
+  protectImage(brumaImg);
 }
 
 const P=[
