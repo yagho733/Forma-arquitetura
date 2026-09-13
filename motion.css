@@ -1,0 +1,42 @@
+/* ===== SISTEMA ÚNICO DE MOTION =====
+   Regra do arquivo: elementos com movimento contínuo (parallax do scroll,
+   tilt do mouse) têm o `transform` escrito SOMENTE pelo JavaScript; o CSS
+   só define `transition` (suavização) e propriedades não conflitantes
+   (opacity, filter, clip-path). Reveals de "um disparo só" (headings, texto
+   do hero, menu, modal) usam @keyframes e nunca são tocados de novo.
+   Tudo abaixo só ativa com body.motion-ready (JS confirmado + sem
+   prefers-reduced-motion), então sem JS o site continua 100% visível. */
+#scrollProgress{position:fixed;z-index:120;left:0;top:0;height:2px;width:100%;transform:scaleX(0);transform-origin:left center;background:linear-gradient(90deg,var(--copper),#d2a184);pointer-events:none;will-change:transform}
+body.motion-ready .hero{overflow:hidden;isolation:isolate}
+body.motion-ready .hero::before{content:"";position:absolute;z-index:1;inset:0;pointer-events:none;background:radial-gradient(circle at var(--mx,60%) var(--my,30%),rgba(224,161,125,.22),rgba(224,161,125,0) 32%);mix-blend-mode:screen;opacity:.68;animation:heroGlowBreathe 6.5s ease-in-out infinite alternate}
+@keyframes heroGlowBreathe{from{opacity:.48}to{opacity:.82}}
+body.motion-ready .hero img{opacity:0;transform:scale(1.18);filter:saturate(.68) brightness(.82);transition:opacity 1.3s ease,filter 1.3s ease;will-change:transform,opacity,filter}
+body.motion-ready .hero.is-loaded img{opacity:1;filter:none}
+body.motion-ready .hero-copy .eyebrow{clip-path:inset(0 0 100% 0);opacity:0;animation:copyWipeIn .8s cubic-bezier(.16,1,.3,1) .15s forwards}
+body.motion-ready .hero-copy h1{clip-path:inset(0 0 100% 0);opacity:0;transform:translateY(14px);animation:copyWipeIn .95s cubic-bezier(.16,1,.3,1) .28s forwards}
+body.motion-ready .hero-bottom{opacity:0;transform:translateY(26px);animation:copyFadeIn .9s cubic-bezier(.16,1,.3,1) .55s forwards}
+@keyframes copyWipeIn{to{clip-path:inset(0 0 0% 0);opacity:1;transform:none}}
+@keyframes copyFadeIn{to{opacity:1;transform:none}}
+body.motion-ready .motion-item{opacity:0;transform:translate3d(0,32px,0);transition:opacity .8s cubic-bezier(.16,1,.3,1),transform .8s cubic-bezier(.16,1,.3,1);transition-delay:var(--motion-delay,0ms)}
+body.motion-ready .motion-item.is-visible{opacity:1;transform:none}
+body.motion-ready .motion-item-x{opacity:0;transform:translate3d(30px,0,0);transition:opacity .75s cubic-bezier(.16,1,.3,1),transform .75s cubic-bezier(.16,1,.3,1);transition-delay:var(--motion-delay,0ms)}
+body.motion-ready .motion-item-x.is-visible{opacity:1;transform:none}
+body.motion-ready .motion-heading{opacity:0;clip-path:inset(0 0 100% 0);transform:translateY(18px);transition:opacity .8s ease,clip-path .95s cubic-bezier(.16,1,.3,1),transform .95s cubic-bezier(.16,1,.3,1)}
+body.motion-ready .motion-heading.is-visible{opacity:1;clip-path:inset(0);transform:none}
+.card{perspective:1300px}.card .photo{position:relative;overflow:hidden;isolation:isolate;transition:box-shadow .5s ease}
+body.motion-ready .card .photo{transform:perspective(1300px) rotateX(var(--rx,0deg)) rotateY(var(--ry,0deg)) translateZ(0);will-change:transform}
+.card .photo:after{content:"";position:absolute;inset:0;pointer-events:none;background:radial-gradient(circle at var(--shine-x,50%) var(--shine-y,50%),rgba(255,246,232,.24),rgba(255,255,255,0) 30%);opacity:0;transition:opacity .35s ease;mix-blend-mode:screen;z-index:2}
+.card:hover .photo,.card:focus-visible .photo{box-shadow:0 30px 65px rgba(24,38,31,.16)}.card:hover .photo:after,.card:focus-visible .photo:after{opacity:1}
+body.motion-ready .card img{opacity:0;filter:saturate(.7) brightness(.84);transition:transform 1.05s cubic-bezier(.16,1,.3,1),filter .9s ease,opacity .7s ease;will-change:transform}
+body.motion-ready .card.is-visible img{opacity:1;filter:none}
+body.motion-ready .card h3,body.motion-ready .card .meta,body.motion-ready .card .summary{opacity:0;transform:translateY(16px);transition:opacity .65s cubic-bezier(.16,1,.3,1),transform .65s cubic-bezier(.16,1,.3,1),color .3s ease}
+body.motion-ready .card.is-visible h3{transition-delay:.14s}body.motion-ready .card.is-visible .meta{transition-delay:.2s}body.motion-ready .card.is-visible .summary{transition-delay:.26s}
+body.motion-ready .card.is-visible h3,body.motion-ready .card.is-visible .meta,body.motion-ready .card.is-visible .summary{opacity:1;transform:none}
+.card:hover h3,.card:focus-visible h3{transform:translateX(8px);color:var(--forest)}.card:hover .meta,.card:hover .summary,.card:focus-visible .meta,.card:focus-visible .summary{transform:translateX(5px)}
+body.motion-ready .studio img{opacity:0;transform:scale(1.1);filter:saturate(.75) brightness(.88);transition:transform 1s cubic-bezier(.16,1,.3,1),opacity .9s ease,filter .9s ease;will-change:transform}body.motion-ready .studio-grid.is-visible img{opacity:1;filter:none}.studio-grid:hover img{filter:saturate(.9) contrast(1.03)}
+.service{position:relative;overflow:hidden;transition:padding-left .35s cubic-bezier(.16,1,.3,1),background .35s ease}.service:after{content:"";position:absolute;left:0;bottom:0;width:0;height:1px;background:var(--copper);transition:width .65s cubic-bezier(.16,1,.3,1)}.service:hover{padding-left:10px;background:rgba(255,255,255,.18)}.service:hover:after{width:100%}.step{position:relative;transition:transform .35s cubic-bezier(.16,1,.3,1),border-color .35s ease}.step:hover{transform:translateX(8px);border-color:rgba(255,255,255,.6)}
+.link,.submit,.back-project{position:relative;overflow:hidden}.link:before,.submit:before,.back-project:after{content:"";position:absolute;inset:0;transform:translateX(-105%);background:linear-gradient(90deg,transparent,rgba(255,255,255,.16),transparent);transition:transform .7s cubic-bezier(.16,1,.3,1);pointer-events:none}.link:hover:before,.submit:hover:before,.back-project:hover:after{transform:translateX(105%)}
+.modal{backdrop-filter:blur(0);-webkit-backdrop-filter:blur(0);transition:opacity .5s ease,visibility 0s .5s linear,backdrop-filter .5s ease}.modal.open{backdrop-filter:blur(7px);-webkit-backdrop-filter:blur(7px);transition:opacity .5s ease,visibility 0s linear,backdrop-filter .5s ease}.panel-img-frame{overflow:hidden;background:#d9d6cf}.panel-img{transform:scale(1.14);filter:brightness(.7) saturate(.75);opacity:0;transition:transform 1.05s cubic-bezier(.16,1,.3,1),filter .95s ease,opacity .6s ease}.modal.open .panel-img{transform:scale(1.015);filter:none;opacity:1}.panel-copy>*{opacity:0;transform:translateY(24px)}.modal.open .panel-copy>*{animation:panelCopyIn .72s var(--delay,0s) cubic-bezier(.16,1,.3,1) forwards}.modal.open .panel-copy>*:nth-child(1){--delay:.12s}.modal.open .panel-copy>*:nth-child(2){--delay:.19s}.modal.open .panel-copy>*:nth-child(3){--delay:.26s}.modal.open .panel-copy>*:nth-child(4){--delay:.33s}.modal.open .panel-copy>*:nth-child(5){--delay:.40s}.modal.open .panel-copy>*:nth-child(6){--delay:.47s}@keyframes panelCopyIn{to{opacity:1;transform:none}}.project-accent{position:relative;overflow:hidden}.project-accent:after{content:"";position:absolute;top:0;left:-25%;width:25%;height:100%;background:linear-gradient(90deg,transparent,rgba(255,255,255,.08),transparent);transform:skewX(-18deg);transition:left 1s cubic-bezier(.16,1,.3,1)}.project-accent:hover:after{left:115%}
+body.motion-ready::after{content:"";position:fixed;z-index:119;pointer-events:none;left:0;bottom:0;height:1px;width:100%;background:linear-gradient(90deg,transparent,rgba(184,117,82,.7),transparent);transform:translateX(-100%);animation:ambientLine 9s linear infinite}@keyframes ambientLine{to{transform:translateX(100%)}}
+@media(max-width:760px){#scrollProgress{height:1.5px}body.motion-ready .card .photo{transform:none!important}.card .photo:after{display:none}.service:hover{padding-left:0;background:none}.step:hover{transform:none}.modal.open .panel-img{transition-duration:.85s}}
+@media(prefers-reduced-motion:reduce){#scrollProgress{display:none!important}.card .photo,.card img,.studio img,.hero img,.hero-copy *,.panel-img{transform:none!important;transition:none!important}.panel-img{opacity:1!important;filter:none!important}}
