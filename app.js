@@ -105,6 +105,16 @@ if(brumaImg){
   brumaImg.src='https://images.unsplash.com/photo-1775116483675-a592e6e02807?auto=format&fit=crop&fm=jpg&ixlib=rb-4.1.0&q=78&w=2200';
   protectImage(brumaImg);
 }
+const refugioImg=cards[3]?.querySelector('img');
+if(refugioImg){
+  refugioImg.src='https://unsplash.com/photos/GvOcpTNAHFo/download?force=true&w=2200';
+  protectImage(refugioImg);
+}
+const lumeImg=cards[4]?.querySelector('img');
+if(lumeImg){
+  lumeImg.src='https://unsplash.com/photos/mCQ-ykj6tQk/download?force=true&w=2200';
+  protectImage(lumeImg);
+}
 
 const P=[
   {title:'Casa Horizonte',year:'2026',type:'Residencial',loc:'Pelotas — RS',area:'320 m²',sum:'Concreto, vidro e ambientes de convivência voltados para o jardim.',concept:'Uma casa que transforma o jardim em parte da rotina.',story:'A Casa Horizonte nasce de uma linha horizontal clara, que organiza os volumes e cria uma relação contínua entre interior e paisagem. Grandes planos de vidro aproximam sala, jantar e área externa, enquanto os ambientes íntimos ganham privacidade e silêncio. Concreto, madeira e luz quente equilibram precisão e acolhimento.'},
