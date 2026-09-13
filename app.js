@@ -40,7 +40,6 @@ window.formaScrollLock=(()=>{
   const openBtn=document.getElementById('openMenu');
   const closeBtn=document.getElementById('closeMenu');
   if(!menu||!openBtn||!closeBtn)return;
-
   menu.setAttribute('aria-hidden','true');
   openBtn.setAttribute('aria-controls','menu');
   openBtn.setAttribute('aria-expanded','false');
@@ -48,7 +47,6 @@ window.formaScrollLock=(()=>{
   closeBtn.type='button';
   document.querySelector('.nav')?.setAttribute('aria-label','Navegação principal');
   menu.querySelector('nav')?.setAttribute('aria-label','Navegação mobile');
-
   const open=()=>{
     menu.classList.add('open');
     menu.setAttribute('aria-hidden','false');
@@ -57,7 +55,6 @@ window.formaScrollLock=(()=>{
     window.formaScrollLock.lock();
     requestAnimationFrame(()=>closeBtn.focus({preventScroll:true}));
   };
-
   const close=(restoreFocus=true)=>{
     menu.classList.remove('open');
     menu.setAttribute('aria-hidden','true');
@@ -66,7 +63,6 @@ window.formaScrollLock=(()=>{
     window.formaScrollLock.unlock();
     if(restoreFocus)requestAnimationFrame(()=>openBtn.focus({preventScroll:true}));
   };
-
   openBtn.onclick=open;
   closeBtn.onclick=()=>close();
   menu.querySelectorAll('a').forEach(a=>a.onclick=()=>close(false));
@@ -115,7 +111,6 @@ const mc=document.querySelector('#modalConcept');
 const ms=document.querySelector('#modalStory');
 const backProject=document.querySelector('#backProject');
 let lastFocus=null;
-
 protectImage(mi);
 
 function slug(s){
@@ -175,7 +170,6 @@ if(form){
   const tipo=form.querySelector('[name="tipo"]');
   const mensagem=form.querySelector('[name="mensagem"]');
   const submit=form.querySelector('.submit');
-
   nome?.setAttribute('aria-label','Seu nome');
   nome?.setAttribute('autocomplete','name');
   cidade?.setAttribute('aria-label','Cidade e estado');
@@ -186,7 +180,6 @@ if(form){
     submit.type='submit';
     submit.textContent='Enviar pelo WhatsApp';
   }
-
   form.addEventListener('submit',e=>{
     e.preventDefault();
     if(!form.reportValidity())return;
@@ -197,8 +190,12 @@ if(form){
       ?`https://wa.me/${numero}?text=${encodeURIComponent(texto)}`
       :`https://api.whatsapp.com/send?text=${encodeURIComponent(texto)}`;
     if(status)status.textContent='Abrindo o WhatsApp com sua mensagem…';
-    const opened=window.open(url,'_blank','noopener,noreferrer');
-    if(!opened)window.location.href=url;
+    const opened=window.open(url,'_blank');
+    if(opened){
+      try{opened.opener=null;}catch(_e){}
+    }else{
+      window.location.href=url;
+    }
   });
 }
 
