@@ -39,4 +39,17 @@
   .panel{width:100%;max-width:none;min-height:100svh;box-shadow:none}
   .panel-img-frame{height:52vh;min-height:420px}
   .panel-copy{width:min(980px,86vw);margin:auto;padding:48px 0 72px}
+
+  /* Mantém o botão Voltar inteiro e afastado das bordas no desktop. */
+  .back-project{
+    position:absolute;
+    left:auto;
+    right:28px;
+    top:28px;
+    max-width:calc(100vw - 56px);
+    white-space:nowrap;
+    overflow:visible;
+    transform:none;
+  }
+  .back-project:hover,.back-project:focus-visible{transform:none}
 }
